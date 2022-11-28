@@ -98,7 +98,6 @@
 									</thead>
 									<tbody>
 
-
 									<tr>
 										<td>22 Oktober 2022</td>
 										<td>Agenda Aja</td>

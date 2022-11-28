@@ -16,7 +16,7 @@ class Ekskul extends CI_Controller
 
 	function index()
 	{
-		$x['data'] = $this->moedl_eskul->get_all_eskul();
+		$x['data'] = $this->model_kategori->get_all_kategori();
 		$this->load->view('admin/v_ekskul', $x);
 	}
 

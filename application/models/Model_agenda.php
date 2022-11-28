@@ -3,7 +3,6 @@
 class Model_agenda extends CI_Model
 {
 
-
 	function simpan_agenda($nama_agenda, $deskripsi, $mulai, $selesai, $tempat, $waktu, $keterangan)
 	{
 		$author = $this->session->userdata('nama');
