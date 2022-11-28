@@ -1,12 +1,22 @@
 <?php
 
-class Model_guru extends CI_Model
+class model_guru extends CI_Model
 {
 
 	function get_all_guru()
 	{
-		$hsl = $this->db->query("SELECT * FROM guru");
+		$hsl = $this->db->query("SELECT guru.*, IF(guru_jenkel='L','Laki-Laki','Perempuan') AS jenkel FROM guru");
 		return $hsl;
+	}
+
+	function simpan_upload($judul, $image)
+	{
+		$data = array(
+			'judul' => $judul,
+			'gambar' => $image
+		);
+		$result = $this->db->insert('tbl_galeri', $data);
+		return $result;
 	}
 
 	function simpan_guru($nip, $nama, $jenkel, $tmp_lahir, $tgl_lahir, $pendidikan_guru, $mapel, $photo)

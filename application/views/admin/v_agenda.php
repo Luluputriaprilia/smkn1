@@ -283,6 +283,8 @@
 	$agenda_author = $i['agenda_author'];
 	$tangal = $i['tanggal'];
 	?>
+
+
 	<!--Modal Edit Pengguna-->
 	<div class="modal fade" id="ModalEdit<?php echo $agenda_id; ?>" tabindex="-1" role="dialog"
 		 aria-labelledby="myModalLabel">

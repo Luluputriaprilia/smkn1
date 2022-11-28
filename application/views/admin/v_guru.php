@@ -55,7 +55,8 @@
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">Guru</li>
+				<li><a href="#">Guru</a></li>
+				<li class="active">Data Guru</li>
 			</ol>
 		</section>
 
@@ -66,18 +67,12 @@
 					<div class="box">
 
 						<div class="box">
-
-							<?php
-							if ($this->session->userdata('akses') == '1') {
-								?>
-								<div class="box-header">
-									<a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span
-												class="fa fa-plus"></span> Add Guru</a>
+							<div class="box-header">
+								<a class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal"><span
+											class="fa fa-user-plus"></span> Add Guru</a>
 								</div>
 
-								<?php
-							}
-							?>
+
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example1" class="table table-striped" style="font-size:13px;">
@@ -89,37 +84,55 @@
 										<th>Tempat/Tgl Lahir</th>
 										<th>Jenis Kelamin</th>
 										<th>Mata Pelajaran</th>
-										<?php
-										if ($this->session->userdata('akses') == '1') {
-											?>
-											<th style="text-align:right;">Aksi</th>
-										<?php } ?>
+										<th>pendidikan guru</th>
+										<th style="text-align:right;">Aksi</th>
 									</tr>
 									</thead>
 									<tbody>
 
+									<?php foreach ($data->result_array() as $i):
+										$guru_id = $i['guru_id'];
+										$guru_nama = $i['guru_nama'];
+										$guru_nip = $i['guru_nip'];
+										$guru_tgl_lhr = $i['guru_tempat_lahir'];
+										$guru_tmp_lhr = $i['guru_tgl_lahir'];
+										$guru_jenkel = $i['guru_jenkel'];
+										$guru_matpel = $i['guru_matpel'];
+										$guru_pendidikan_guru = $i['guru_pendidikan_guru'];
+										$guru_photo = $i['guru_photo'];
+										$gbr = $i['guru_photo'];
+										?>
+
 									<tr>
 
 										<td><img width="40" height="40" class="img-circle" src="
-<?php echo base_url() ?>tampilan/gambar/jurusan.png"></td>
+												<?php echo base_url() . 'assets/images/' . $guru_photo; ?>">
+										</td>
 
-										<td>12345</td>
-										<td>Nama Guru</td>
-										<td>Garut 22 oktober 2022</td>
-
-										<td>Laki-Laki</td>
-
-
-										<td>LKA</td>
-
-										<td style="text-align:right;">
-
-											<a class="btn" data-toggle="modal"><span class="fa fa-pencil"></span></a>
-											<a class="btn" data-toggle="modal"><span class="fa fa-trash"></span></a>
-
+										<td><?php echo $guru_nip; ?></td>
+										<td><?php echo $guru_nama; ?></td>
+										<td><?php echo $guru_tmp_lhr; ?></td>
+										<td><?php echo $guru_tgl_lhr; ?></td>
+										<td><?php echo $guru_pendidikan_guru?></td>
+										<td><?php if ($guru_jenkel == 'L') {
+												echo "Laki-laki";
+											} else {
+												echo "Perempuan";
+											} ?></td>
+										<td><?php echo $guru_matpel; ?></td>
+										<td style="text-align:right;"
+										<a class="btn" data-toggle="modal"
+										   data-target="#ModalEdit<?php echo $guru_id; ?>"><span
+													class="fa fa-pencil"></span></a>
+										<a class="btn"
+										   href="<?php echo base_url() . 'admin/guru/reset_password/' . $guru_id; ?>"><span
+													class="fa fa-refresh"></span></a>
+										<a class="btn" data-toggle="modal"
+										   data-target="#ModalHapus<?php echo $guru_id; ?>"><span
+													class="fa fa-trash"></span></a>
 										</td>
 									</tr>
-
+								<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
@@ -234,7 +247,7 @@
 					<div class="form-group">
 						<label for="inputUserName" class="col-sm-4 control-label">Photo</label>
 						<div class="col-sm-7">
-							<input type="file" name="filefoto"/>
+							<input type="file" name="filefoto" required/>
 						</div>
 					</div>
 

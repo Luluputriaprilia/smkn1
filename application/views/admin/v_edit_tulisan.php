@@ -77,7 +77,7 @@
 					<h3 class="box-title">Update Berita</h3>
 				</div>
 				<?php
-				$b = $data->row_array();
+				$b = $this->row_array();
 				?>
 				<form action="<?php echo base_url() . 'admin/tulisan/update_tulisan' ?>" method="post"
 					  enctype="multipart/form-data">
@@ -139,7 +139,7 @@
 								<select class="form-control select2" name="xkategori" style="width: 100%;" required>
 									<option value="">-Pilih-</option>
 									<?php
-									foreach ($kat->result_array() as $i) {
+									foreach ($this->result_array() as $i) {
 										$kategori_id = $i['kategori_id'];
 										$kategori_nama = $i['kategori_nama'];
 										if ($b['tulisan_kategori_id'] == $kategori_id)
